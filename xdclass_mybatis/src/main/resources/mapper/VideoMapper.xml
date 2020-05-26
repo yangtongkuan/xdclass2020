@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--
+ namespace: 名称空间，一般需要保持全局唯一,强烈建议使用对应dao层的全限定类名，
+    可以映射 sql语句 到对应的方法名称和参数、返回类型
+    mybatis是使用接口动态代理
+-->
+<mapper namespace="com.edu.online.mapper.VideoMapper">
+    <!--
+        id 对应 map的方法名  切当前作用域唯一
+        resultType 返回的封装类型
+    -->
+    <select id="selectById" resultType="com.edu.online.domain.Video">
+        select * from video where id = #{id}
+    </select>
+
+    <select id="selectAllByXml" resultType="com.edu.online.domain.Video">
+        select * from video
+    </select>
+
+    <select id="selectPointAndTitleLike" resultType="com.edu.online.domain.Video">
+        select * from video where point = #{point} and title like concat('%',#{title},'%')
+    </select>
+
+</mapper>
