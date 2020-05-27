@@ -30,12 +30,30 @@ public interface VideoMapper {
     List<Video> selectAllByXml();
 
     /**
-     * @Desc 对于多个参数传值时 若不指定别名  会报参数名未找到
      * @param point
      * @param title
      * @return
+     * @Desc 对于多个参数传值时 若不指定别名  会报参数名未找到
      */
     List<Video> selectPointAndTitleLike(@Param("point") double point, @Param("title") String title);
+
+
+    /**
+     * 保存视频
+     *
+     * @param video
+     * @return
+     */
+    int saveVideo(Video video);
+
+
+    /**
+     * 批量新增
+     *
+     * @param list
+     * @return
+     */
+    int saveBatchVideo(List<Video> list);
 
 
 }

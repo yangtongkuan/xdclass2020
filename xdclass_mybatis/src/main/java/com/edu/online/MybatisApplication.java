@@ -9,8 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
-import java.util.List;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,8 +33,39 @@ public class MybatisApplication {
 //            List<Video> videoList = mapper.selectAllByXml();
 //            System.out.println(videoList);
             // 模糊查询
-            List<Video> pointAndTitleLike = mapper.selectPointAndTitleLike(8.7, "HTML");
-            System.out.println(pointAndTitleLike);
+            // List<Video> pointAndTitleLike = mapper.selectPointAndTitleLike(8.7, "HTML");
+            // System.out.println(pointAndTitleLike);
+            // 添加一个video
+            Video video = new Video();
+            video.setTitle("程序员成长专题111");
+            video.setCoverImg("xdclass.net/a1111.png");
+            video.setCreateTime(new Date());
+            video.setPoint(9.11);
+            video.setPrice(1111);
+            int rows = mapper.saveVideo(video);
+            System.out.println(rows);
+            System.out.println(video);
+            // 批量插入~~
+            // video1.setTitle("程序员成长专题111");
+            // video1.setCoverImg("xdclass.net/a1111.png");
+            // video1.setCreateTime(new Date());
+            // video1.setPoint(9.11);
+            // video1.setPrice(1111);
+            // video1.setSummary("这是专题课程111");
+            //
+            // Video video2 = new Video();
+            // video2.setTitle("程序员成长专题");
+            // video2.setCoverImg("xdclass.net/a.png");
+            // video2.setCreateTime(new Date());
+            // video2.setPoint(9.70);
+            // video2.setPrice(10);
+            // video2.setSummary("这是专题课程");
+            // List<Video> list = new ArrayList<>();
+            // list.add(video1);
+            // list.add(video2);
+            // int rows = mapper.saveBatchVideo(list);
+            // System.out.println(rows);
+            // System.out.println(list.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

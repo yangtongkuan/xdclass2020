@@ -24,4 +24,46 @@
         select * from video where point = #{point} and title like concat('%',#{title},'%')
     </select>
 
+    <!-- 保存一个视频
+            parameterType 入参类型
+            useGeneratedKeys 是否使用数据库主键
+            keyProperty 主键对应实体字段
+            keyColumn 数据库对应的主键字段
+            建议指定参数的类型 否可可能会出现错误
+    -->
+    <insert id="saveVideo" parameterType="com.edu.online.domain.Video" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
+        INSERT INTO `video`(`title`,`summary`,`cover_img`,`price`,`create_time`,`point`)
+        VALUES(#{title,jdbcType=VARCHAR},#{summary,jdbcType=VARCHAR},#{coverImg,jdbcType=VARCHAR},
+          #{price,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{point,jdbcType=DOUBLE})
+    </insert>
+
+    <!--<insert id="saveVideo" parameterType="com.edu.online.domain.Video" useGeneratedKeys="true" keyProperty="id"-->
+    <!--keyColumn="id">-->
+    <!--INSERT INTO `video`(`title`,`summary`,`cover_img`,`price`,`create_time`,`point`)-->
+    <!--VALUES(#{title},#{summary},#{coverImg},-->
+    <!--#{price}, #{createTime}, #{point})-->
+    <!--</insert>-->
+
+    <!-- 批量插入
+        使用 useGeneratedKeys,keyProperty,keyColumn 可以映射到list对象上
+    -->
+    <insert id="saveBatchVideo" parameterType="com.edu.online.domain.Video" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
+        INSERT INTO `video`(`title`,`summary`,`cover_img`,`price`,`create_time`,`point`)
+        VALUES
+        <!--
+            批量插入:
+            foreach 循环遍历函数
+            item : 单个别名
+            index: 角标
+            separator : 连接符号
+            引用必须制定item.xxx的形式
+        -->
+        <foreach collection="list" item="video" index="index" separator=",">
+            (#{video.title,jdbcType=VARCHAR},#{video.summary,jdbcType=VARCHAR},#{video.coverImg,jdbcType=VARCHAR},
+            #{video.price,jdbcType=INTEGER}, #{video.createTime,jdbcType=DATE}, #{video.point,jdbcType=DOUBLE})
+        </foreach>
+    </insert>
+
 </mapper>
