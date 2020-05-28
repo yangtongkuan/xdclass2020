@@ -55,5 +55,11 @@ public interface VideoMapper {
      */
     int saveBatchVideo(List<Video> list);
 
+    // 全部更新
+    int updateVideoById(Video video);
+
+    // 部分更新
+    int updateVideoSelective(Video video);
+
 
 }

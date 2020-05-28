@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,15 +35,15 @@ public class MybatisApplication {
             // List<Video> pointAndTitleLike = mapper.selectPointAndTitleLike(8.7, "HTML");
             // System.out.println(pointAndTitleLike);
             // 添加一个video
-            Video video = new Video();
-            video.setTitle("程序员成长专题111");
-            video.setCoverImg("xdclass.net/a1111.png");
-            video.setCreateTime(new Date());
-            video.setPoint(9.11);
-            video.setPrice(1111);
-            int rows = mapper.saveVideo(video);
-            System.out.println(rows);
-            System.out.println(video);
+            // Video video = new Video();
+            // video.setTitle("程序员成长专题111");
+            // video.setCoverImg("xdclass.net/a1111.png");
+            // video.setCreateTime(new Date());
+            // video.setPoint(9.11);
+            // video.setPrice(1111);
+            // int rows = mapper.saveVideo(video);
+            // System.out.println(rows);
+            // System.out.println(video);
             // 批量插入~~
             // video1.setTitle("程序员成长专题111");
             // video1.setCoverImg("xdclass.net/a1111.png");
@@ -66,6 +65,25 @@ public class MybatisApplication {
             // int rows = mapper.saveBatchVideo(list);
             // System.out.println(rows);
             // System.out.println(list.toString());
+
+            // // todo: 全部更新 video
+            // Video video = new Video();
+            // video.setId(56);
+            // video.setTitle("如何成为技术大牛");
+            // video.setCoverImg("mr.yang.net/a1111.png");
+            // video.setPoint(9.88);
+            // video.setPrice(2222);
+            // int rows = mapper.updateVideoById(video);
+            // System.out.println(rows);
+            // todo: 选择性更新 video 即没有填入的不会更新
+            Video video = new Video();
+            video.setId(56);
+            video.setTitle("java从入门到放弃");
+            video.setCoverImg("mr.yang.net/a1111.png");
+            // video.setPoint(9.88);
+            video.setPrice(77);
+            int rows = mapper.updateVideoSelective(video);
+            System.out.println(rows);
         } catch (Exception e) {
             e.printStackTrace();
         }

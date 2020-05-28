@@ -66,4 +66,44 @@
         </foreach>
     </insert>
 
+    <!-- updateVideoById 更新-->
+    <update id="updateVideoById" parameterType="com.edu.online.domain.Video">
+          update video
+          set title = #{title},
+              summary = #{summary},
+              cover_Img = #{coverImg},
+              price = #{price},
+              point = #{point}
+          WHERE id = #{id}
+    </update>
+
+    <!-- 部分更新
+        使用trim标签 可以去除最后一个,
+        使用if test 做判断 决定是否执行
+        注意 如果参数为基本类型  会有默认值 例如 int 类型 默认值为 0
+        建议使用包装类型或者做相应判断
+     -->
+    <update id="updateVideoSelective" parameterType="com.edu.online.domain.Video">
+        update video
+        <trim prefix="set" suffixOverrides=",">
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="summary != null">
+                summary = #{summary},
+            </if>
+            <if test="coverImg != null">
+                cover_Img = #{coverImg},
+            </if>
+            <if test="price != 0">
+                price = #{price},
+            </if>
+            <if test="point != 0">
+                point = #{point},
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+
 </mapper>
