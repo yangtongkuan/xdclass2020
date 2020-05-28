@@ -105,5 +105,18 @@
         WHERE id = #{id}
     </update>
 
+    <!--
+    按照条件删除
+    为什么要转义字符:
+        由于MyBatis的sql写在XML⾥⾯， 有些sql的语法符号和xml⾥⾯的冲突
+        ⼤于等于 <![CDATA[ >= ]]>
+        ⼩于等于 <![CDATA[ <= ]]>
+         如下语句没有报错 但不建议使用
+        delete from video where create_time > #{createTime} and price > #{price}
+    -->
+    <delete id="deleteVideoByCreateTimeAndPrice" parameterType="java.util.Map">
+        delete from video where create_time  <![CDATA[ > ]]> #{createTime} and price <![CDATA[ > ]]> #{price}
+    </delete>
+
 
 </mapper>

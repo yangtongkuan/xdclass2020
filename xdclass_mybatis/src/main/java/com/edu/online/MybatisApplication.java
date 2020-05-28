@@ -1,6 +1,5 @@
 package com.edu.online;
 
-import com.edu.online.domain.Video;
 import com.edu.online.mapper.VideoMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +8,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -76,13 +77,20 @@ public class MybatisApplication {
             // int rows = mapper.updateVideoById(video);
             // System.out.println(rows);
             // todo: 选择性更新 video 即没有填入的不会更新
-            Video video = new Video();
-            video.setId(56);
-            video.setTitle("java从入门到放弃");
-            video.setCoverImg("mr.yang.net/a1111.png");
-            // video.setPoint(9.88);
-            video.setPrice(77);
-            int rows = mapper.updateVideoSelective(video);
+            // Video video = new Video();
+            // video.setId(56);
+            // video.setTitle("java从入门到放弃");
+            // video.setCoverImg("mr.yang.net/a1111.png");
+            // // video.setPoint(9.88);
+            // video.setPrice(77);
+            // int rows = mapper.updateVideoSelective(video);
+            // System.out.println(rows);
+
+            // 删除
+            Map<String,Object> map = new HashMap<>();
+            map.put("createTime","2021-01-11 09:33:20");
+            map.put("price",9);
+            int rows = mapper.deleteVideoByCreateTimeAndPrice(map);
             System.out.println(rows);
         } catch (Exception e) {
             e.printStackTrace();

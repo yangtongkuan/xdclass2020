@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -60,6 +61,8 @@ public interface VideoMapper {
 
     // 部分更新
     int updateVideoSelective(Video video);
+
+    int deleteVideoByCreateTimeAndPrice(Map map);
 
 
 }
