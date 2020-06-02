@@ -1,6 +1,6 @@
 package com.edu.online;
 
-import com.edu.online.domain.VideoOrder;
+import com.edu.online.domain.User;
 import com.edu.online.mapper.VideoMapper;
 import com.edu.online.mapper.VideoOrderMapper;
 import org.apache.ibatis.io.Resources;
@@ -99,8 +99,11 @@ public class MybatisApplication {
             // System.out.println(video.toString());
 
             // result Map 一对一映射
-            List<VideoOrder> videoOrderList = videoOrderMapper.queryVideoOrderList();
-            System.out.println(videoOrderList.toString());
+            // List<VideoOrder> videoOrderList = videoOrderMapper.queryVideoOrderList();
+            // System.out.println(videoOrderList.toString());
+            // result Map 一对多查询映射
+            List<User> userOrderList = videoOrderMapper.queryUserOrderList();
+            System.out.println(userOrderList.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

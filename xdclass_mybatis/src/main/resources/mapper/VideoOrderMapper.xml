@@ -41,4 +41,34 @@
           u.name,u.head_img,u.phone
          FROM video_order o left join user u on o.user_id = u.id
     </select>
+
+    <!-- 一对多关系映射 -->
+    <resultMap id="userOrderVideoResultMap" type="User">
+        <id column="id" property="id"/>
+        <result property="name" column="name"/>
+        <result property="headImg" column="head_img"/>
+        <result property="phone" column="phone"/>
+        <!--
+          property 填写pojo类中集合类属性的名称
+          ofType 集合里面的pojo对象
+          -->
+        <collection property="videoOrderList" ofType="VideoOrder">
+            <id property="id" column="order_id"/>
+            <result column="out_trade_no" property="outTradeNo"/>
+            <result column="state" property="state"/>
+            <result column="total_fee" property="totalFee"/>
+            <result column="video_id" property="videoId"/>
+            <result column="video_title" property="videoTitle"/>
+        </collection>
+    </resultMap>
+
+    <!-- 一对多关联查询 用户对应的订单信息 -->
+    <select id="queryUserOrderList" resultMap="userOrderVideoResultMap">
+        select
+        u.id,u.name,u.head_img,u.phone,
+        o.id as order_id,
+        o.out_trade_no,o.state,o.total_fee,o.video_id,o.video_title
+        from user u left join video_order as o
+        on u.id = o.user_id;
+    </select>
 </mapper>
