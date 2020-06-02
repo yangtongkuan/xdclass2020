@@ -9,6 +9,17 @@
          -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+    <!--设置别名-->
+    <typeAliases>
+        <!--本身就内置很多别名，⽐如Integer、String、List、Map 等-->
+        <!--单独一个domain起别名
+            type: bean 全限定类名
+            alias: 别名
+        -->
+        <!--<typeAlias type="com.edu.online.domain.Video" alias="Video"></typeAlias>-->
+        <!--包扫描: 当前包下的所有对象都有一个别名 别名为类名-->
+        <package name="com.edu.online.domain"/>
+    </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>

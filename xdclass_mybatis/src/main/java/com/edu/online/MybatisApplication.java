@@ -1,5 +1,6 @@
 package com.edu.online;
 
+import com.edu.online.domain.Video;
 import com.edu.online.mapper.VideoMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -8,8 +9,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,15 +25,15 @@ public class MybatisApplication {
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(stream);
         try (SqlSession session = sessionFactory.openSession()) {
             VideoMapper mapper = session.getMapper(VideoMapper.class);
-//            Video video = mapper.selectById(44);
-//            System.out.println(video.toString());
+           Video video = mapper.selectById(44);
+           System.out.println(video.toString());
             // 通过注解获取 简单的查询还是可以的 对于复杂的查询有点费劲
 //            List<Video> videoList = mapper.selectAll();
 //            List<Video> videoList = mapper.selectAllByXml();
 //            System.out.println(videoList);
-            // 模糊查询
-            // List<Video> pointAndTitleLike = mapper.selectPointAndTitleLike(8.7, "HTML");
-            // System.out.println(pointAndTitleLike);
+//             模糊查询
+//             List<Video> pointAndTitleLike = mapper.selectPointAndTitleLike(8.7, "HTML");
+//             System.out.println(pointAndTitleLike);
             // 添加一个video
             // Video video = new Video();
             // video.setTitle("程序员成长专题111");
@@ -87,11 +86,11 @@ public class MybatisApplication {
             // System.out.println(rows);
 
             // 删除
-            Map<String,Object> map = new HashMap<>();
-            map.put("createTime","2021-01-11 09:33:20");
-            map.put("price",9);
-            int rows = mapper.deleteVideoByCreateTimeAndPrice(map);
-            System.out.println(rows);
+            // Map<String,Object> map = new HashMap<>();
+            // map.put("createTime","2021-01-11 09:33:20");
+            // map.put("price",9);
+            // int rows = mapper.deleteVideoByCreateTimeAndPrice(map);
+            // System.out.println(rows);
         } catch (Exception e) {
             e.printStackTrace();
         }

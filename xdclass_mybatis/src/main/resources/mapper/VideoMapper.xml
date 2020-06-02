@@ -8,19 +8,28 @@
     mybatis是使用接口动态代理
 -->
 <mapper namespace="com.edu.online.mapper.VideoMapper">
+    <!--sql 片段的使用-->
+    <sql id="base_video_filed">
+        id,title,summary,cover_img
+    </sql>
     <!--
         id 对应 map的方法名  切当前作用域唯一
         resultType 返回的封装类型
+        select * from video where id = #{id}
+        2. 使用sql片段查询 适用于多出重复的字段
     -->
     <select id="selectById" resultType="com.edu.online.domain.Video">
-        select * from video where id = #{id}
+        select
+        <include refid="base_video_filed"/>
+        from video where id = #{video_id}
     </select>
 
     <select id="selectAllByXml" resultType="com.edu.online.domain.Video">
         select * from video
     </select>
 
-    <select id="selectPointAndTitleLike" resultType="com.edu.online.domain.Video">
+    <!--<select id="selectPointAndTitleLike" resultType="com.edu.online.domain.Video">-->
+    <select id="selectPointAndTitleLike" resultType="Video">
         select * from video where point = #{point} and title like concat('%',#{title},'%')
     </select>
 
