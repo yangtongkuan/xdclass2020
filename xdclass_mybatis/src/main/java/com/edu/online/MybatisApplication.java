@@ -1,7 +1,8 @@
 package com.edu.online;
 
-import com.edu.online.domain.Video;
+import com.edu.online.domain.VideoOrder;
 import com.edu.online.mapper.VideoMapper;
+import com.edu.online.mapper.VideoOrderMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,8 +27,9 @@ public class MybatisApplication {
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(stream);
         try (SqlSession session = sessionFactory.openSession()) {
             VideoMapper mapper = session.getMapper(VideoMapper.class);
-           Video video = mapper.selectById(44);
-           System.out.println(video.toString());
+            VideoOrderMapper videoOrderMapper = session.getMapper(VideoOrderMapper.class);
+            // Video video = mapper.selectById(44);
+            // System.out.println(video.toString());
             // 通过注解获取 简单的查询还是可以的 对于复杂的查询有点费劲
 //            List<Video> videoList = mapper.selectAll();
 //            List<Video> videoList = mapper.selectAllByXml();
@@ -91,6 +94,13 @@ public class MybatisApplication {
             // map.put("price",9);
             // int rows = mapper.deleteVideoByCreateTimeAndPrice(map);
             // System.out.println(rows);
+            // result Map 结果集映射~~~~~~~~~~~~
+            // Video video = mapper.selectByIdResultMap(44);
+            // System.out.println(video.toString());
+
+            // result Map 一对一映射
+            List<VideoOrder> videoOrderList = videoOrderMapper.queryVideoOrderList();
+            System.out.println(videoOrderList.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -62,7 +62,15 @@ public interface VideoMapper {
     // 部分更新
     int updateVideoSelective(Video video);
 
+    // 通过时间 和 价格删除
     int deleteVideoByCreateTimeAndPrice(Map map);
 
+    /**
+     * 通过id 查询 返回resultMap的封装
+     *
+     * @param id
+     * @return
+     */
+    Video selectByIdResultMap(Integer id);
 
 }

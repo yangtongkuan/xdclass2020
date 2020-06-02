@@ -128,4 +128,19 @@
     </delete>
 
 
+    <!-- result Map 的单体使用-->
+    <resultMap id="videoBaseFailedResultMap" type="Video">
+        <id property="id" column="id"/>
+        <result property="title" column="video_title" jdbcType="VARCHAR"/>
+        <result property="summary" column="summary" jdbcType="VARCHAR"/>
+        <result property="coverImg" column="cover_img" jdbcType="VARCHAR"/>
+        <result property="point" column="point" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- 通过id查询并返回resultMap定义对象-->
+    <select id="selectByIdResultMap" resultMap="videoBaseFailedResultMap" parameterType="INTEGER">
+      SELECT id,title as video_title,summary, cover_img FROM video where id = #{id}
+    </select>
+
+
 </mapper>
