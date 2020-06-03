@@ -8,6 +8,10 @@
             开启映射驼峰式转换  默认为false
          -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 步骤1: mybatis 开启二级缓存 缓存总开关 、
+            -这个配置使全局的映射器(⼆级缓存)启⽤或禁⽤缓存，全局总开关，这⾥关闭，mapper中开启了也没⽤
+        -->
+        <setting name="cacheEnabled" value="true"/>
     </settings>
     <!--设置别名-->
     <typeAliases>
