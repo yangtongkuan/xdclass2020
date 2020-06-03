@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+        id,name bean在spring容器中的唯一标识
+        bean标签 id属性：指定Bean的名称，在Bean被别的类依赖时使⽤
+        name属性：⽤于指定Bean的别名，如果没有id，也可以⽤name
+        class属性：⽤于指定Bean的来源，要创建的Bean的class类，需要全限定名
+        spring ioc 控制反转 将原本程序创建的bean实例 交于spring 容器来管理
+        核⼼：把创建对象的控制权反转给Spring框架，对象的⽣命周期由Spring统⼀管理
+    -->
+    <bean id="video" class="com.edu.online.sp.domain.Video">
+        <property name="id" value="9"/>
+        <property name="title" value="spring 5.x 新特性"/>
+    </bean>
+
+    <!-- spring di 依赖注入
+        IOC容器在运⾏期间，动态地将对象某种依赖关系注⼊到对象之中
+     -->
+    <bean id="videoOrder" class="com.edu.online.sp.domain.VideoOrder">
+        <property name="id" value="1"/>
+        <property name="outTradeNo" value="20200603230501001"/>
+        <property name="video" ref="video"/>
+    </bean>
+
+
+</beans>
