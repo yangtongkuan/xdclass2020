@@ -71,4 +71,35 @@
         from user u left join video_order as o
         on u.id = o.user_id;
     </select>
+
+    <!-- mybatis 懒加载 -->
+    <resultMap id="videoOrderUserResultMapLazy" type="VideoOrder">
+        <id property="id" column="id"/>
+        <result column="out_trade_no" property="outTradeNo"/>
+        <result column="state" property="state"/>
+        <result column="total_fee" property="totalFee"/>
+        <result column="video_id" property="videoId"/>
+        <result column="video_title" property="videoTitle"/>
+        <result column="user_id" property="userId"/>
+        <!--
+        association 配置属性一对一
+        property 对应videoOrder里面的user属性名
+        javType 这个属性的类型
+        -->
+        <association property="user" javaType="User" column="user_id" select="findUserById"/>
+
+    </resultMap>
+    <!-- 通过id 查询用户信息 -->
+    <select id="findUserById" resultType="User">
+        select * from user where id = #{user_id}
+    </select>
+
+    <!-- lazy 懒加载-->
+    <select id="queryVideoOrderListLazy" resultMap="videoOrderUserResultMapLazy">
+        SELECT
+         o.id,o.out_trade_no,o.state,o.total_fee,o.video_id,o.video_title,o.user_id
+         FROM video_order o
+    </select>
+
+
 </mapper>

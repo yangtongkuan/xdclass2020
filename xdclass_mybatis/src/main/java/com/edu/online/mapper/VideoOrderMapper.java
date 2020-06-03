@@ -24,4 +24,10 @@ public interface VideoOrderMapper {
      * @return
      */
     List<User> queryUserOrderList();
+
+
+    /**
+     * mybatis 懒加载
+     */
+    List<VideoOrder> queryVideoOrderListLazy();
 }
