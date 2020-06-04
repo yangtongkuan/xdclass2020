@@ -1,5 +1,7 @@
 package com.edu.online.sp.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 import java.util.Map;
 

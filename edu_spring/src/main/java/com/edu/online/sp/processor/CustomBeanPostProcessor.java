@@ -15,6 +15,9 @@ import org.springframework.core.Ordered;
 public class CustomBeanPostProcessor implements BeanPostProcessor,Ordered {
 
     /**
+     * autowire 注解的底层实现就是使用了BeanPostProcessor接口 对象后置处理器
+     */
+    /**
      *BeanPostProcessor 接口 是spring ioc 提供的一个扩展接口
      * 在调⽤初始化⽅法前后对 Bean 进⾏额外加⼯，ApplicationContext 会⾃动扫描实现了
      * BeanPostProcessor的 bean，并注册这些 bean 为后置处理器
