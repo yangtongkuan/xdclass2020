@@ -11,7 +11,13 @@
         spring ioc 控制反转 将原本程序创建的bean实例 交于spring 容器来管理
         核⼼：把创建对象的控制权反转给Spring框架，对象的⽣命周期由Spring统⼀管理
     -->
-    <bean id="video" class="com.edu.online.sp.domain.Video">
+    <!--
+        scope 作用域  默认为singleton 单例的
+            常用 singleton 单例
+                prototype 多例 调⽤getBean⽅法创建不同的对象，会频繁的创建和销毁对象
+            其他 session , request
+    -->
+    <bean id="video" class="com.edu.online.sp.domain.Video" scope="prototype">
         <property name="id" value="9"/>
         <property name="title" value="spring 5.x 新特性"/>
     </bean>
@@ -23,6 +29,18 @@
         <property name="id" value="1"/>
         <property name="outTradeNo" value="20200603230501001"/>
         <property name="video" ref="video"/>
+    </bean>
+
+    <!--spring 常见两种注入方式
+        1. 通过set注入
+        2. 通过构造器注入
+    -->
+    <!--<bean id="video2" class="com.edu.online.sp.domain.Video" scope="prototype">-->
+        <!--<property name="id" value="9"/>-->
+        <!--<property name="title" value="spring 5.x 新特性"/>-->
+    <!--</bean>-->
+    <bean id="video2" class="com.edu.online.sp.domain.Video" scope="prototype">
+       <constructor-arg name="title" value="spring 5.x 新版"/>
     </bean>
 
 
