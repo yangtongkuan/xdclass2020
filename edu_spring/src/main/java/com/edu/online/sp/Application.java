@@ -2,6 +2,7 @@ package com.edu.online.sp;
 
 import com.edu.online.sp.domain.Video;
 import com.edu.online.sp.domain.Video1;
+import com.edu.online.sp.domain.VideoOrder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -31,7 +32,8 @@ public class Application {
         // 依赖注入 collection List/Map
         // testInjectCollection(context);
         // 依赖注入 bean 容器之间的继承关系
-        testInjectParent(context);
+//        testInjectParent(context);
+        testInject(context);
     }
 
     // 测试注入 - 作用域 scope
@@ -47,6 +49,19 @@ public class Application {
         Video video2 = (Video) context.getBean("video");
         System.out.println("scope prototype 获取对象为:" + (video1 == video2));
         // scope prototype 获取对象为:false
+    }
+
+    /**
+     * 依赖注入
+     *
+     * @param context
+     */
+    public static void testInject(ApplicationContext context) {
+        Video video = (Video) context.getBean("video");
+        System.out.println(video.getTitle());
+        VideoOrder videoOrder = (VideoOrder) context.getBean("videoOrder");
+        System.out.println(videoOrder.toString());
+        ((ClassPathXmlApplicationContext) context).registerShutdownHook();
     }
 
     /**

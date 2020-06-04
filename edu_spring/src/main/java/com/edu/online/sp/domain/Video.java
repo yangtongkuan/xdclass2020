@@ -16,7 +16,7 @@ public class Video {
 
     private List<String> orderList;
 
-    private Map<Integer,String> videoMap;
+    private Map<Integer, String> videoMap;
 
     public List<String> getOrderList() {
         return orderList;
@@ -37,6 +37,7 @@ public class Video {
     }
 
     public Video() {
+        System.out.println("video 空构造器执行了~~");
     }
 
     public Video(String title) {
@@ -65,5 +66,13 @@ public class Video {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 '}';
+    }
+
+    public void init() {
+        System.out.println("video init~~~~");
+    }
+
+    public void destory(){
+        System.out.println("video destory ~~~~");
     }
 }

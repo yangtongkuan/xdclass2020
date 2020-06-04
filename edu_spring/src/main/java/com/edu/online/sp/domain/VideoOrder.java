@@ -13,7 +13,11 @@ public class VideoOrder {
     private Video video;
 
     public VideoOrder() {
-        System.out.println("video order 空构造函数调用");
+//        System.out.println("video order 空构造函数调用");
+    }
+
+    public VideoOrder(Video video) {
+        this.video = video;
     }
 
     public Long getId() {

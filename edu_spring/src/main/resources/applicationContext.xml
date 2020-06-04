@@ -17,7 +17,8 @@
                 prototype 多例 调⽤getBean⽅法创建不同的对象，会频繁的创建和销毁对象
             其他 session , request
     -->
-    <bean id="video" class="com.edu.online.sp.domain.Video" scope="prototype">
+    <bean id="video" class="com.edu.online.sp.domain.Video" scope="singleton" init-method="init"
+          destroy-method="destory">
         <property name="id" value="9"/>
         <property name="title" value="spring 5.x 新特性"/>
     </bean>
@@ -32,6 +33,18 @@
         <property name="video" ref="video"/>
     </bean>
 
+    <!--autowrie的使用
+        autowire 默认为no 表示注入
+            byName 通过名称注入
+            byType 通过类型注入
+            constructor 通过构造方法注入
+    -->
+    <!--<bean id="videoOrder" class="com.edu.online.sp.domain.VideoOrder" autowire="byName">-->
+        <!--<property name="id" value="1"/>-->
+        <!--<property name="outTradeNo" value="20200603230501001"/>-->
+    <!--</bean>-->
+
+
     <!--spring 常见两种注入方式
         1. 通过set注入
         2. 通过构造器注入
@@ -40,33 +53,39 @@
     <!--<property name="id" value="9"/>-->
     <!--<property name="title" value="spring 5.x 新特性"/>-->
     <!--</bean>-->
-    <bean id="video2" class="com.edu.online.sp.domain.Video">
-        <constructor-arg name="title" value="spring 5.x 新版"/>
-    </bean>
+    <!--<bean id="video2" class="com.edu.online.sp.domain.Video">-->
+    <!--<constructor-arg name="title" value="spring 5.x 新版"/>-->
+    <!--</bean>-->
 
-    <bean id="video3" class="com.edu.online.sp.domain.Video">
-        <property name="orderList">
-            <list>
-                <value>第一章springboot2.x</value>
-                <value>第二章mybatis</value>
-                <value>第三章spring5.x</value>
-            </list>
-        </property>
-        <property name="videoMap">
-            <map>
-                <entry key="1" value="第一章springboot2.x"/>
-                <entry key="2" value="第二章mybatis"/>
-            </map>
-        </property>
-    </bean>
+    <!--<bean id="video3" class="com.edu.online.sp.domain.Video">-->
+    <!--<property name="orderList">-->
+    <!--<list>-->
+    <!--<value>第一章springboot2.x</value>-->
+    <!--<value>第二章mybatis</value>-->
+    <!--<value>第三章spring5.x</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--<property name="videoMap">-->
+    <!--<map>-->
+    <!--<entry key="1" value="第一章springboot2.x"/>-->
+    <!--<entry key="2" value="第二章mybatis"/>-->
+    <!--</map>-->
+    <!--</property>-->
+    <!--</bean>-->
 
-    <!--
-        bean继承：两个类之间⼤多数的属性都相同，避免重复配置，通过bean标签的parent属性重⽤已
-        有的Bean元素的配置信息 继承指的是配置信息的复⽤，和Java类的继承没有关系
+    <!--&lt;!&ndash;-->
+    <!--bean继承：两个类之间⼤多数的属性都相同，避免重复配置，通过bean标签的parent属性重⽤已-->
+    <!--有的Bean元素的配置信息 继承指的是配置信息的复⽤，和Java类的继承没有关系-->
+    <!--&ndash;&gt;-->
+    <!--<bean id="video1_1" class="com.edu.online.sp.domain.Video1" parent="video3">-->
+    <!--<property name="summary" value="http://123.com/test.jpg"/>-->
+    <!--</bean>-->
+
+    <!-- bean 初始化处理器
+        当多后置处理器同时处理类时, 需要实现ordered 接口来指定执行循序
     -->
-    <bean id="video1_1" class="com.edu.online.sp.domain.Video1" parent="video3">
-        <property name="summary" value="http://123.com/test.jpg"/>
-    </bean>
+    <!--<bean class="com.edu.online.sp.processor.CustomBeanPostProcessor"/>-->
+    <!--<bean class="com.edu.online.sp.processor.CustomBeanPostProcessor2"/>-->
 
 
 </beans>
