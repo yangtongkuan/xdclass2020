@@ -24,8 +24,9 @@
 
     <!-- spring di 依赖注入
         IOC容器在运⾏期间，动态地将对象某种依赖关系注⼊到对象之中
+        depends-on 标明依赖关系 这样video实例会在videoOrder实例之前进行创建
      -->
-    <bean id="videoOrder" class="com.edu.online.sp.domain.VideoOrder">
+    <bean id="videoOrder" class="com.edu.online.sp.domain.VideoOrder" depends-on="video">
         <property name="id" value="1"/>
         <property name="outTradeNo" value="20200603230501001"/>
         <property name="video" ref="video"/>
