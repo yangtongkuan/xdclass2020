@@ -1,6 +1,7 @@
 package com.edu.online.sp;
 
 import com.edu.online.sp.domain.Video;
+import com.edu.online.sp.domain.Video1;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -24,13 +25,17 @@ public class Application {
         // System.out.println(videoOrder.getVideo().getTitle());
 
         // 依赖注入作用域
-        // testInject(context);
+        // testScope(context);
         // 依赖注入的两种方式
-        testInject2(context);
+        // testInject2(context);
+        // 依赖注入 collection List/Map
+        // testInjectCollection(context);
+        // 依赖注入 bean 容器之间的继承关系
+        testInjectParent(context);
     }
 
     // 测试注入 - 作用域 scope
-    public static void testInject(ApplicationContext context) {
+    public static void testScope(ApplicationContext context) {
         // bean的作用为singleton的情况下 spring只维护一个bean实例对象
         // 通过比较两个对象的内存地址 来判断是不是一个对象实例
         // Video video1 = (Video) context.getBean("video");
@@ -55,4 +60,25 @@ public class Application {
         Video video2 = (Video) context.getBean("video2");
         System.out.println(video2.getTitle());
     }
+
+    /**
+     * 依赖注入 collection
+     * List/Map
+     */
+    public static void testInjectCollection(ApplicationContext context) {
+        Video video3 = (Video) context.getBean("video3");
+        System.out.println(video3.getOrderList().toString());
+        System.out.println(video3.getVideoMap().values().toString());
+    }
+
+    /**
+     * 依赖注入-继承
+     */
+    public static void testInjectParent(ApplicationContext context) {
+        Video1 video1 = (Video1) context.getBean("video1_1");
+        System.out.println(video1.getOrderList().toString());
+        System.out.println(video1.getVideoMap().values().toString());
+        System.out.println(video1.getSummary());
+    }
+
 }

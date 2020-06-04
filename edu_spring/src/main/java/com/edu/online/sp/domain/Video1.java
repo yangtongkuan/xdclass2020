@@ -10,19 +10,30 @@ import java.util.Map;
  * @Date: @Date 2020/6/3 22:44
  * @To change this template use File | Settings | File Templates.
  */
-public class Video {
+public class Video1 {
     private Long id;
     private String title;
 
+    private String summary;
+
     private List<String> orderList;
 
-    private Map<Integer,String> videoMap;
+    private Map<Integer, String> videoMap;
 
     public List<String> getOrderList() {
         return orderList;
     }
 
-    public Video setOrderList(List<String> orderList) {
+    public String getSummary() {
+        return summary;
+    }
+
+    public Video1 setSummary(String summary) {
+        this.summary = summary;
+        return this;
+    }
+
+    public Video1 setOrderList(List<String> orderList) {
         this.orderList = orderList;
         return this;
     }
@@ -31,15 +42,15 @@ public class Video {
         return videoMap;
     }
 
-    public Video setVideoMap(Map<Integer, String> videoMap) {
+    public Video1 setVideoMap(Map<Integer, String> videoMap) {
         this.videoMap = videoMap;
         return this;
     }
 
-    public Video() {
+    public Video1() {
     }
 
-    public Video(String title) {
+    public Video1(String title) {
         this.title = title;
     }
 
