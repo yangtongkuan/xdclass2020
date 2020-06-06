@@ -3,6 +3,7 @@ package com.edu.online.sp;
 import com.edu.online.sp.domain.Video;
 import com.edu.online.sp.domain.Video1;
 import com.edu.online.sp.domain.VideoOrder;
+import com.edu.online.sp.service.VideoService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -33,7 +34,17 @@ public class Application {
         // testInjectCollection(context);
         // 依赖注入 bean 容器之间的继承关系
 //        testInjectParent(context);
-        testInject(context);
+        // 依赖注入
+        // testInject(context);
+        // 切面编程
+        testAspect(context);
+    }
+
+    //
+    public static void testAspect(ApplicationContext context) {
+        VideoService videoService = (VideoService) context.getBean("videoService");
+        videoService.findVById(null);
+        videoService.saveVideo();
     }
 
     // 测试注入 - 作用域 scope

@@ -2,7 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd"
+       xmlns:aop="http://www.springframework.org/schema/aop">
     <!--
         id,name bean在spring容器中的唯一标识
         bean标签 id属性：指定Bean的名称，在Bean被别的类依赖时使⽤
@@ -40,8 +43,8 @@
             constructor 通过构造方法注入
     -->
     <!--<bean id="videoOrder" class="com.edu.online.sp.domain.VideoOrder" autowire="byName">-->
-        <!--<property name="id" value="1"/>-->
-        <!--<property name="outTradeNo" value="20200603230501001"/>-->
+    <!--<property name="id" value="1"/>-->
+    <!--<property name="outTradeNo" value="20200603230501001"/>-->
     <!--</bean>-->
 
 
@@ -87,5 +90,26 @@
     <!--<bean class="com.edu.online.sp.processor.CustomBeanPostProcessor"/>-->
     <!--<bean class="com.edu.online.sp.processor.CustomBeanPostProcessor2"/>-->
 
+    <!-- bean -->
+    <bean id="videoService" class="com.edu.online.sp.service.VideoService"/>
+    <bean id="timeHandler" class="com.edu.online.sp.aspect.TimeHandlerAspect"/>
+    <aop:config>
+        <!-- 配置 切面-->
+        <aop:aspect id="timeAspect" ref="timeHandler">
+            <!-- 配置切点 -->
+            <!--<aop:pointcut id="allMethodLogPointCut"-->
+            <!--expression="execution(* com.edu.online.sp.service.VideoService.*(..))"/>-->
+            <aop:pointcut id="selectivePointCut"
+                          expression="execution(* com.edu.online.sp.service.VideoService.save*(..))"/>
+            <!-- 配置前置增强 -->
+            <!--<aop:before method="beforeMethod" pointcut-ref="allMethodLogPointCut"/>-->
+            <!-- 配置后置增强 -->
+            <!--<aop:after method="afterMethod" pointcut-ref="allMethodLogPointCut"/>-->
+            <!-- 环绕通知 -->
+            <aop:around method="aroundMethod" pointcut-ref="selectivePointCut"/>
+        </aop:aspect>
+
+
+    </aop:config>
 
 </beans>

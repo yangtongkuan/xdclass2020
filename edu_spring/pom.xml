@@ -32,6 +32,12 @@
             <artifactId>spring-beans</artifactId>
             <version>5.2.5.RELEASE</version>
         </dependency>
+        <!-- 添加对aop的支持 -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.6.11</version>
+        </dependency>
     </dependencies>
 
 
