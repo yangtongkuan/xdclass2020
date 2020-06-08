@@ -5,5 +5,13 @@
         select * from video;
     </select>
 
+    <select id="listBanner" resultType="VideoBanner">
+        select * from video_banner;
+    </select>
+
+    <select id="findDetailById" resultType="Video">
+        select * from video where id = #{videoId}
+    </select>
+
 
 </mapper>
