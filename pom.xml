@@ -11,6 +11,7 @@
     <modules>
         <module>xdclass_mybatis</module>
         <module>edu_spring</module>
+        <module>online_edu</module>
     </modules>
 
 
