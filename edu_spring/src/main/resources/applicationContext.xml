@@ -42,7 +42,7 @@
             byType 通过类型注入
             constructor 通过构造方法注入
     -->
-    <!--<bean id="videoOrder" class="com.edu.online.sp.domain.VideoOrder" autowire="byName">-->
+    <!--<bean id="videoOrder" class="com.edu.online.sp.model.VideoOrder" autowire="byName">-->
     <!--<property name="id" value="1"/>-->
     <!--<property name="outTradeNo" value="20200603230501001"/>-->
     <!--</bean>-->
@@ -52,15 +52,15 @@
         1. 通过set注入
         2. 通过构造器注入
     -->
-    <!--<bean id="video2" class="com.edu.online.sp.domain.Video" scope="prototype">-->
+    <!--<bean id="video2" class="com.edu.online.sp.model.Video" scope="prototype">-->
     <!--<property name="id" value="9"/>-->
     <!--<property name="title" value="spring 5.x 新特性"/>-->
     <!--</bean>-->
-    <!--<bean id="video2" class="com.edu.online.sp.domain.Video">-->
+    <!--<bean id="video2" class="com.edu.online.sp.model.Video">-->
     <!--<constructor-arg name="title" value="spring 5.x 新版"/>-->
     <!--</bean>-->
 
-    <!--<bean id="video3" class="com.edu.online.sp.domain.Video">-->
+    <!--<bean id="video3" class="com.edu.online.sp.model.Video">-->
     <!--<property name="orderList">-->
     <!--<list>-->
     <!--<value>第一章springboot2.x</value>-->
@@ -80,7 +80,7 @@
     <!--bean继承：两个类之间⼤多数的属性都相同，避免重复配置，通过bean标签的parent属性重⽤已-->
     <!--有的Bean元素的配置信息 继承指的是配置信息的复⽤，和Java类的继承没有关系-->
     <!--&ndash;&gt;-->
-    <!--<bean id="video1_1" class="com.edu.online.sp.domain.Video1" parent="video3">-->
+    <!--<bean id="video1_1" class="com.edu.online.sp.model.Video1" parent="video3">-->
     <!--<property name="summary" value="http://123.com/test.jpg"/>-->
     <!--</bean>-->
 

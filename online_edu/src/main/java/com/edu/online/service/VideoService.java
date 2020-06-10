@@ -1,8 +1,7 @@
 package com.edu.online.service;
 
-import com.edu.online.domain.Video;
-import com.edu.online.domain.VideoBanner;
-import org.springframework.boot.Banner;
+import com.edu.online.model.entity.Video;
+import com.edu.online.model.entity.VideoBanner;
 
 import java.util.List;
 

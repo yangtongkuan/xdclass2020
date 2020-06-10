@@ -29,21 +29,21 @@
         select * from video where id = #{id}
         2. 使用sql片段查询 适用于多出重复的字段
     -->
-    <!--<select id="selectById" resultType="com.edu.online.domain.Video">-->
+    <!--<select id="selectById" resultType="com.edu.online.modelVideo">-->
     <!-- 如果某个查询方法不使用二级缓存的时候 将 useCache 设置为false 默认为true
         将useCache 设置为false 并不会影响一级缓存的使用
     -->
-    <select id="selectById" resultType="com.edu.online.domain.Video" useCache="false">
+    <select id="selectById" resultType="com.edu.online.model.entity.Video" useCache="false">
         select
         <include refid="base_video_filed"/>
         from video where id = #{video_id}
     </select>
 
-    <select id="selectAllByXml" resultType="com.edu.online.domain.Video">
+    <select id="selectAllByXml" resultType="com.edu.online.model.entity.Video">
         select * from video
     </select>
 
-    <!--<select id="selectPointAndTitleLike" resultType="com.edu.online.domain.Video">-->
+    <!--<select id="selectPointAndTitleLike" resultType="com.edu.online.modelVideo">-->
     <select id="selectPointAndTitleLike" resultType="Video">
         select * from video where point = #{point} and title like concat('%',#{title},'%')
     </select>
@@ -55,14 +55,14 @@
             keyColumn 数据库对应的主键字段
             建议指定参数的类型 否可可能会出现错误
     -->
-    <insert id="saveVideo" parameterType="com.edu.online.domain.Video" useGeneratedKeys="true" keyProperty="id"
+    <insert id="saveVideo" parameterType="com.edu.online.model.entity.Video" useGeneratedKeys="true" keyProperty="id"
             keyColumn="id">
         INSERT INTO `video`(`title`,`summary`,`cover_img`,`price`,`create_time`,`point`)
         VALUES(#{title,jdbcType=VARCHAR},#{summary,jdbcType=VARCHAR},#{coverImg,jdbcType=VARCHAR},
           #{price,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{point,jdbcType=DOUBLE})
     </insert>
 
-    <!--<insert id="saveVideo" parameterType="com.edu.online.domain.Video" useGeneratedKeys="true" keyProperty="id"-->
+    <!--<insert id="saveVideo" parameterType="com.edu.online.modelVideo" useGeneratedKeys="true" keyProperty="id"-->
     <!--keyColumn="id">-->
     <!--INSERT INTO `video`(`title`,`summary`,`cover_img`,`price`,`create_time`,`point`)-->
     <!--VALUES(#{title},#{summary},#{coverImg},-->
@@ -72,7 +72,7 @@
     <!-- 批量插入
         使用 useGeneratedKeys,keyProperty,keyColumn 可以映射到list对象上
     -->
-    <insert id="saveBatchVideo" parameterType="com.edu.online.domain.Video" useGeneratedKeys="true" keyProperty="id"
+    <insert id="saveBatchVideo" parameterType="com.edu.online.model.entity.Video" useGeneratedKeys="true" keyProperty="id"
             keyColumn="id">
         INSERT INTO `video`(`title`,`summary`,`cover_img`,`price`,`create_time`,`point`)
         VALUES
@@ -91,7 +91,7 @@
     </insert>
 
     <!-- updateVideoById 更新-->
-    <update id="updateVideoById" parameterType="com.edu.online.domain.Video">
+    <update id="updateVideoById" parameterType="com.edu.online.model.entity.Video">
           update video
           set title = #{title},
               summary = #{summary},
@@ -107,7 +107,7 @@
         注意 如果参数为基本类型  会有默认值 例如 int 类型 默认值为 0
         建议使用包装类型或者做相应判断
      -->
-    <update id="updateVideoSelective" parameterType="com.edu.online.domain.Video">
+    <update id="updateVideoSelective" parameterType="com.edu.online.model.entity.Video">
         update video
         <trim prefix="set" suffixOverrides=",">
             <if test="title != null">

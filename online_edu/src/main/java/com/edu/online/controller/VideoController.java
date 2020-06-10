@@ -1,7 +1,7 @@
 package com.edu.online.controller;
 
-import com.edu.online.domain.Video;
-import com.edu.online.domain.VideoBanner;
+import com.edu.online.model.entity.Video;
+import com.edu.online.model.entity.VideoBanner;
 import com.edu.online.service.VideoService;
 import com.edu.online.utils.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;

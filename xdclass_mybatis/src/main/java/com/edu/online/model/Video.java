@@ -1,4 +1,4 @@
-package com.edu.online.domain;
+package com.edu.online.model;
 
 import java.util.Date;
 

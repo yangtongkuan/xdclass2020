@@ -1,6 +1,6 @@
 package com.edu.online;
 
-import com.edu.online.domain.Video;
+import com.edu.online.model.Video;
 import com.edu.online.mapper.VideoMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

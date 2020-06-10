@@ -25,9 +25,9 @@
             type: bean 全限定类名
             alias: 别名
         -->
-        <!--<typeAlias type="com.edu.online.domain.Video" alias="Video"></typeAlias>-->
+        <!--<typeAlias type="com.edu.online.modelVideo" alias="Video"></typeAlias>-->
         <!--包扫描: 当前包下的所有对象都有一个别名 别名为类名-->
-        <package name="com.edu.online.domain"/>
+        <package name="com.edu.online.model"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">

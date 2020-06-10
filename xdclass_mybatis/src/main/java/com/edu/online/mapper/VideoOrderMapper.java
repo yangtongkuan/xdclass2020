@@ -1,7 +1,7 @@
 package com.edu.online.mapper;
 
-import com.edu.online.domain.User;
-import com.edu.online.domain.VideoOrder;
+import com.edu.online.model.User;
+import com.edu.online.model.VideoOrder;
 
 import java.util.List;
 
