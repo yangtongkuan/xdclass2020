@@ -1,4 +1,5 @@
 package com.edu.online.mapper;
+
 import com.edu.online.model.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,4 +10,6 @@ public interface UserMapper {
     User findByPhone(@Param("phone") String phone);
 
     User findByPhoneAndPwd(@Param("phone") String phone, @Param("pwd") String pwd);
+
+    User findById(@Param("user_id") Integer userId);
 }

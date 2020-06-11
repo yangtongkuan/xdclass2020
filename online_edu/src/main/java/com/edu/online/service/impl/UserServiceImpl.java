@@ -6,6 +6,7 @@ import com.edu.online.model.request.LoginRequest;
 import com.edu.online.service.UserService;
 import com.edu.online.utils.CommonUtils;
 import com.edu.online.utils.JWTUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,11 @@ public class UserServiceImpl implements UserService {
             return JWTUtils.geneJsonWebToken(userByPhone);
         }
         return null;
+    }
+
+    @Override
+    public User findById(Integer userId) {
+       return userMapper.findById(userId);
     }
 
     /**

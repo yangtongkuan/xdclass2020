@@ -1,15 +1,14 @@
 package com.edu.online.controller;
 
+import com.edu.online.model.entity.User;
 import com.edu.online.model.request.LoginRequest;
 import com.edu.online.service.UserService;
 import com.edu.online.utils.JsonData;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
@@ -47,5 +46,18 @@ public class UserController {
         String token = userService.loginByPhone(login);
         return StringUtils.isNotEmpty(token) ? JsonData.buildSuccess(token) : JsonData.buildError("用户名或密码错误");
     }
+
+    /**
+     * 分局token获取用户信息
+     * @param request
+     * @return
+     */
+    @GetMapping("find_by_token")
+    public JsonData find_by_token(HttpServletRequest request) {
+        Integer userId = (Integer) request.getAttribute("user_id");
+        User user = userService.findById(userId);
+        return JsonData.buildSuccess(user);
+    }
+
 
 }
